@@ -77,7 +77,7 @@ CloudINormalPtr RayCasting::pc_downsampling(CloudINormalPtr pcl_input_pc)
     // sensor_msgs::PointCloud2::Ptr filtered_pc{new sensor_msgs::PointCloud2};
     // pcl::VoxelGrid<sensor_msgs::PointCloud2> sor;
     CloudINormalPtr pcl_filtered_pc_ {new CloudINormal};
-    pcl::VoxelGrid<CloudINormal> sor;
+    pcl::VoxelGrid<PointINormal> sor;
 
     // sor.setInputCloud(input_pc);
     sor.setInputCloud(pcl_input_pc);
