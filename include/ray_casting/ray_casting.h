@@ -3,13 +3,10 @@
 
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
-#include <sensor_msgs/point_cloud_conversion.h>
 
 #include <pcl/point_types.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/filters/voxel_grid.h>
-#include <pcl/filters/extract_indices.h>
-#include <pcl/kdtree/kdtree.h>
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_cloud.h>
 
