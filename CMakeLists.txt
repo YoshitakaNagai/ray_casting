@@ -10,12 +10,8 @@ SET(CMAKE_CXX_FLAGS "-std=c++11 -O2 -g -Wall ${CMAKE_CXX_FLAGS}")
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
 	geometry_msgs
-  	pcl_ros
   	rostest
-  	# roslint
   	tf2_sensor_msgs
-  	laser_geometry
-  	pcl_conversions
   	roscpp
   	rospy
   	sensor_msgs
@@ -26,15 +22,13 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-find_package(PCL 1.8.0 REQUIRED)
 find_package(OpenMP)
 if(OPENMP_FOUND)
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
 
-find_package(Boost REQUIRED COMPONENTS system)
-find_package(Boost REQUIRED COMPONENTS thread)
+find_package(PCL 1.8 REQUIRED)
 find_package(Eigen3 REQUIRED COMPONENTS system)
 include_directories(${Eigen_INCLUDE_DIRS})
 
@@ -153,7 +147,8 @@ include_directories(
 )
 
 link_directories(
-	${PCL_INCLUDE_DIRS}
+	#${PCL_INCLUDE_DIRS}
+    ${PCL_LIBRARY_DIRS}
 )
 
 add_definitions(
@@ -174,6 +169,7 @@ add_dependencies(libray_casting ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
+add_executable(ray_casting src/ray_casting_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -191,7 +187,6 @@ add_dependencies(ray_casting ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORT
 #   ${catkin_LIBRARIES}
 # )
 
-add_executable(ray_casting src/ray_casting_node.cpp)
 target_link_libraries(ray_casting
 	${catkin_LIBRARIES}
 	${PCL_LIBRARIES}
