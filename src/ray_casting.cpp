@@ -56,7 +56,7 @@ void RayCasting::execution(void)
 void RayCasting::pc_callback(const sensor_msgs::PointCloud2ConstPtr &msg)
 {
     // sensor_msgs::PointCloud2 input_pc;
-    sensor_msgs::PointCloud2 input_pc{new sensor_msgs::PointCloud2};
+    sensor_msgs::PointCloud2 input_pc{new sensor_msgs::PointCloud2 ()};
     sensor_msgs::PointCloud2::Ptr filtered_pc{new sensor_msgs::PointCloud2};
 
     input_pc = msg;
