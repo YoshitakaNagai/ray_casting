@@ -196,6 +196,7 @@ add_executable(ray_casting src/ray_casting.cpp)
 target_link_libraries(ray_casting
 	${catkin_LIBRARIES}
 	${PCL_LIBRARIES}
+    libray_casting
 )
 
 
