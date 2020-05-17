@@ -68,6 +68,7 @@ class RayCasting
 
         double RAY_FOV_YAW;
         int RAY_NUM_YAW;
+        float ray_delta_yaw;
 
         double LOWER_RAY_FOV_PITCH, UPPER_RAY_FOV_PITCH; // deg
         double lower_ray_fov_pitch, upper_ray_fov_pitch; // rad
@@ -76,7 +77,7 @@ class RayCasting
         ros::NodeHandle nh;
         
 		ros::Subscriber pc_subscriber;
-		ros::Subscriber lidar_postion_subscriber;
+		ros::Subscriber lidar_position_subscriber;
 
 		ros::Publisher raycast_msg_publisher;
 		

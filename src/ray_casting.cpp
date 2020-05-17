@@ -5,7 +5,6 @@ RayCasting::RayCasting(void)
 : nh("~")
 {
     nh.param("Hz", Hz, 100.0);
-    nh.param("INITIAL_BUFFER", INITIAL_BUFFER, 10);
     nh.param("LENGTH", LENGTH, 50.0); // ->X
     nh.param("WIDTH", WIDTH, 50.0); // ->Y
     nh.param("HEIGHT", HEIGHT, 2.0); // ->Z
@@ -18,7 +17,7 @@ RayCasting::RayCasting(void)
     nh.param("LOWER_RAY_FOV_PITCH", LOWER_RAY_FOV_PITCH, -30.67);
     // nh.param("", , );
 
-    pc_subscriber = n.subscribe("/velodyne_points", 10, &RayCasting::converted_pc_callback, this);
+    pc_subscriber = n.subscribe("/velodyne_points", 10, &RayCasting::pc_callback, this);
     lidar_position_subscriber = n.subscribe("/lidar_position_msg", 10, &RayCasting::lidar_position_msg_callback, this);
 	
 	raycast_msg_publisher = n.advertise<ray_casting::RayCasting>("/raycast_msg", 10);
@@ -58,7 +57,7 @@ void RayCasting::pc_callback(const sensor_msgs::PointCloud2ConstPtr &msg)
 {
     // sensor_msgs::PointCloud2 input_pc;
     sensor_msgs::PointCloud2::Ptr input_pc{new sensor_msgs::PointCloud2 ()};
-    sensor_msgs::PointCloud2::Ptr filterd_pc{new sensor_msgs::PointCloud2 ()};
+    sensor_msgs::PointCloud2::Ptr filtered_pc{new sensor_msgs::PointCloud2 ()};
 
     input_pc = msg;
 	// input_pc = *msg;
@@ -165,7 +164,7 @@ void RayCasting::pre_casting(void)
                 if(relative_theta < 0){
                     relative_theta += 2 * M_PI;
                 }
-                float relative_phi = atan2(relative_range_z, range_xy);
+                // float relative_phi = atan2(relative_range_z, range_xy);
                 int iyaw = (int)(relative_theta / ray_delta_yaw);
                 PreCast precast_data;
                 precast_data.ix = ix;
@@ -174,7 +173,7 @@ void RayCasting::pre_casting(void)
                 precast_data.dist = relative_dist;
                 precast_data.phi = relative_phi;
                 precast_data.theta = relative_theta;
-                precast[iz][iyaw].list.push_back(data);
+                precast[iz][iyaw].list.push_back(precast_data);
             }
         }
     }
@@ -191,10 +190,10 @@ void RayCasting::ray_casting(void)
         float relative_range_z = pt.z - lidar_position_msg.global_z;
         float relative_dist = sqrt(pt.x * pt.x + pt.y * pt.y + relative_range_z * relative_range_z);
         float relative_theta = atan2(pt.y, pt.x);
-        if(related_theta < 0){
-            related_theta += 2 * M_PI;
+        if(relative_theta < 0){
+            relative_theta += 2 * M_PI;
         }
-        float relative_phi = atan2(relative_range_z, range_xy);
+        // float relative_phi = atan2(relative_range_z, range_xy);
         int iyaw = (int)(relative_theta / ray_delta_yaw);
 
         for(auto& list : precast[iz][iyaw].list){
