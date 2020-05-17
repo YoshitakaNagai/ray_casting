@@ -9,7 +9,6 @@
 #include <pcl/point_types.h>
 #include <pcl/features/normal_3d.h>
 #include <pcl_conversions/pcl_conversions.h>
-#include <pcl/search/kdtree.h>
 #include <pcl_ros/point_cloud.h>
 #include <pcl_ros/transforms.h>
 #include <pcl/common/transforms.h>
