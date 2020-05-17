@@ -77,9 +77,6 @@ class RayCasting
 
 		ros::Publisher raycast_msg_publisher;
 		
-		tf::TransformListener listener;
-		tf::StampedTransform transform;
- 
         CloudIPtr pcl_filtered_pc {new CloudI()};
 
         Eigen::Vector3f zero_vector = Eigen::Vector3f::Zero();
