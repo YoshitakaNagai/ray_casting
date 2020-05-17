@@ -56,8 +56,8 @@ void RayCasting::execution(void)
 void RayCasting::pc_callback(const sensor_msgs::PointCloud2ConstPtr &msg)
 {
     // sensor_msgs::PointCloud2 input_pc;
-    sensor_msgs::PointCloud2::Ptr input_pc{new sensor_msgs::PointCloud2 ()};
-    sensor_msgs::PointCloud2::Ptr filtered_pc{new sensor_msgs::PointCloud2 ()};
+    sensor_msgs::PointCloud2 input_pc{new sensor_msgs::PointCloud2};
+    sensor_msgs::PointCloud2::Ptr filtered_pc{new sensor_msgs::PointCloud2};
 
     input_pc = msg;
 	// input_pc = *msg;
@@ -68,9 +68,9 @@ void RayCasting::pc_callback(const sensor_msgs::PointCloud2ConstPtr &msg)
 }
 
 
-sensor_msgs::PointCloud2::Ptr RayCasting::pc_downsampling(const sensor_msgs::PointCloud2ConstPtr &input_pc)
+sensor_msgs::PointCloud2::Ptr RayCasting::pc_downsampling(sensor_msgs::PointCloud2::Ptr input_pc)
 {
-    sensor_msgs::PointCloud2::Ptr filterd_pc{new sensor_msgs::PointCloud2 ()};
+    sensor_msgs::PointCloud2::Ptr filterd_pc{new sensor_msgs::PointCloud2};
     pcl::VoxelGrid<sensor_msgs::PointCloud2> sor;
 
     sor.setInputCloud(input_pc);
@@ -164,7 +164,7 @@ void RayCasting::pre_casting(void)
                 if(relative_theta < 0){
                     relative_theta += 2 * M_PI;
                 }
-                // float relative_phi = atan2(relative_range_z, range_xy);
+                float relative_phi = atan2(relative_range_z, range_xy);
                 int iyaw = (int)(relative_theta / ray_delta_yaw);
                 PreCast precast_data;
                 precast_data.ix = ix;
@@ -193,7 +193,7 @@ void RayCasting::ray_casting(void)
         if(relative_theta < 0){
             relative_theta += 2 * M_PI;
         }
-        // float relative_phi = atan2(relative_range_z, range_xy);
+        float relative_phi = atan2(relative_range_z, range_xy);
         int iyaw = (int)(relative_theta / ray_delta_yaw);
 
         for(auto& list : precast[iz][iyaw].list){
