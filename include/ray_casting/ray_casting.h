@@ -86,7 +86,7 @@ class RayCasting
 		tf::TransformListener listener;
 		tf::StampedTransform transform;
  
-        CloudINormalPtr pcl_filtered_pc {new CloudINormal};
+        CloudINormalPtr pcl_filtered_pc {new CloudINormal()};
 
         Eigen::Vector3f zero_vector = Eigen::Vector3f::Zero();
 
