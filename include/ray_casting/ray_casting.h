@@ -36,9 +36,9 @@
 #include "ray_casting/LidarPosition.h"
 
 
-typedef pcl::PointXYZINormal PointINormal;
-typedef pcl::PointCloud<PointINormal> CloudINormal;
-typedef pcl::PointCloud<PointINormal>::Ptr CloudINormalPtr;
+typedef pcl::PointXYZI PointI;
+typedef pcl::PointCloud<PointI> CloudI;
+typedef pcl::PointCloud<PointI>::Ptr CloudIPtr;
 
 class RayCasting
 {
@@ -47,7 +47,7 @@ class RayCasting
 
 		void execution(void);
 		void pc_callback(const sensor_msgs::PointCloud2ConstPtr&);
-        pcl::PointCloud<PointINormal>::Ptr pc_downsampling(pcl::PointCloud<PointINormal>::Ptr);
+        pcl::PointCloud<PointI>::Ptr pc_downsampling(pcl::PointCloud<PointI>::Ptr);
 		void lidar_position_msg_callback(const ray_casting::LidarPositionConstPtr&);
         void formatting(void);
         void initialization(void);
@@ -86,7 +86,7 @@ class RayCasting
 		tf::TransformListener listener;
 		tf::StampedTransform transform;
  
-        CloudINormalPtr pcl_filtered_pc {new CloudINormal()};
+        CloudIPtr pcl_filtered_pc {new CloudI()};
 
         Eigen::Vector3f zero_vector = Eigen::Vector3f::Zero();
 

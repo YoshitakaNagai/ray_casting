@@ -56,7 +56,7 @@ void RayCasting::execution(void)
 void RayCasting::pc_callback(const sensor_msgs::PointCloud2ConstPtr &msg)
 {
     sensor_msgs::PointCloud2 input_pc;
-    CloudINormalPtr pcl_input_pc{new CloudINormal()};
+    CloudIPtr pcl_input_pc{new CloudI()};
 
     input_pc = *msg;
 	pcl::fromROSMsg(input_pc, *pcl_input_pc);
@@ -65,10 +65,10 @@ void RayCasting::pc_callback(const sensor_msgs::PointCloud2ConstPtr &msg)
 }
 
 
-pcl::PointCloud<PointINormal>::Ptr RayCasting::pc_downsampling(pcl::PointCloud<PointINormal>::Ptr pcl_input_pc)
+pcl::PointCloud<PointI>::Ptr RayCasting::pc_downsampling(pcl::PointCloud<PointI>::Ptr pcl_input_pc)
 {
-    CloudINormalPtr pcl_filtered_pc_ {new CloudINormal()};
-    pcl::VoxelGrid<pcl::PointXYZINormal> sor;
+    CloudIPtr pcl_filtered_pc_ {new CloudI()};
+    pcl::VoxelGrid<pcl::PointXYZI> sor;
 
     sor.setInputCloud(pcl_input_pc);
     sor.setLeafSize(voxel_size_x, voxel_size_y, voxel_size_z);
