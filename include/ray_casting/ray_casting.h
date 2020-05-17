@@ -45,7 +45,7 @@ class RayCasting
 
 		void execution(void);
 		void pc_callback(const sensor_msgs::PointCloud2ConstPtr&);
-        CloudINormalPtr pc_downsampling(CloudINormalPtr);
+        pcl::PointCloud<PointINormal>::Ptr pc_downsampling(pcl::PointCloud<PointINormal>::Ptr);
 		void lidar_position_msg_callback(const ray_casting::LidarPositionConstPtr&);
         void formatting(void);
         void initialization(void);
