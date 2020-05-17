@@ -4,7 +4,6 @@ Converter::Converter(void)
 : nh("~")
 {
     nh.param("Hz", Hz, 100.0);
-    nh.param("INITIAL_BUFFER", INITIAL_BUFFER, 10);
     nh.param("LENGTH", LENGTH, 50.0); // ->X
     nh.param("WIDTH", WIDTH, 50.0); // ->Y
     nh.param("HEIGHT", HEIGHT, 2.0); // ->Z
