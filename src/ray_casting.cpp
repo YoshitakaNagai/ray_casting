@@ -1,6 +1,5 @@
 #include "ray_casting/ray_casting.h"
 
-
 RayCasting::RayCasting(void)
 : nh("~")
 {
@@ -34,6 +33,8 @@ void RayCasting::execution(void)
 
 		if(pc_callback_flag && lidar_position_msg_callback_flag){
             ray_casting();
+            raycast_msg.header.stamp = ros::Time::now();
+            raycast_msg.header.frame_id = "/velodyne";
             raycast_msg_publisher.publish(raycast_msg);
 		}
 		r.sleep();
@@ -99,6 +100,9 @@ void RayCasting::formatting(void)
         for(int iy = 0; iy < VOXEL_NUM_Y; iy++){
             raycast_msg.voxel.ix[ix].iy[iy].iz.resize(VOXEL_NUM_Z);
             for(int iz = 0; iz < VOXEL_NUM_Z; iz++){
+                raycast_msg.voxel.ix[ix].iy[iy].iz[iz].center_x = 1.5 * voxel_size_x * ix - 0.5 * WIDTH;
+                raycast_msg.voxel.ix[ix].iy[iy].iz[iz].center_y = 1.5 * voxel_size_y * iy - 0.5 * LENGTH;
+                raycast_msg.voxel.ix[ix].iy[iy].iz[iz].center_z = 1.5 * voxel_size_z * iz - 0.5 * HEIGHT;
                 raycast_msg.voxel.ix[ix].iy[iy].iz[iz].occupancy = 0.5;
             }
         }

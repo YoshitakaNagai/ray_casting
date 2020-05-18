@@ -2,6 +2,7 @@
 #define __VISUALIZING_H
 
 #include <ros/ros.h>
+#include <visualization_msgs/Marker.h>
 
 #include "ray_casting/RayCasting.h"
 #include "ray_casting/Format.h"
