@@ -85,6 +85,7 @@ void Visualizing::visualization(void)
                     voxel_marker.markers[i].color.r = 1.0;
                     voxel_marker.markers[i].color.g = 1.0;
                     voxel_marker.markers[i].color.b = 1.0;
+                }
                 if(raycast_msg.voxel.ix[ix].iy[iy].iz[iz].occupancy == Unknown){
                     voxel_marker.markers[i].color.r = 0.5;
                     voxel_marker.markers[i].color.g = 0.5;
