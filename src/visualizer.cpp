@@ -47,7 +47,7 @@ void Visualizing::formatting(void)
     voxel_size_x = (float)LENGTH / (float)VOXEL_NUM_X;
     voxel_size_y = (float)WIDTH / (float)VOXEL_NUM_Y;
     voxel_size_z = (float)HEIGHT / (float)VOXEL_NUM_Z;
-    voxel_num = VOXEL_NUM_X * VOXEL_NUM_Y * VPXEL_NUM_Z;
+    voxel_num = VOXEL_NUM_X * VOXEL_NUM_Y * VOXEL_NUM_Z;
 
     voxel_marker.markers.resize(voxel_num);
 }

@@ -25,7 +25,7 @@ class Visualizing
 		void execution(void);
 		void raycast_msg_callback(const ray_casting::RayCastingConstPtr&);
         void formatting(void);
-        void initialization(void);
+        void visualization(void);
 
 	private:
         bool raycast_msg_callback_flag = false;
