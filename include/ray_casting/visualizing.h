@@ -2,7 +2,7 @@
 #define __VISUALIZING_H
 
 #include <ros/ros.h>
-#include <visualization_msgs/Marker.h>
+#include <visualization_msgs/Markerarray.h>
 
 #include "ray_casting/RayCasting.h"
 #include "ray_casting/Format.h"
@@ -31,20 +31,22 @@ class Visualizing
         bool raycast_msg_callback_flag = false;
 		bool first_flag = false;
 
-		constexpr static float Occupied = 1.0, free = 0.0, Unknown = 0.5;
+		constexpr static float Occupied = 1.0, Free = 0.0, Unknown = 0.5;
 
 		double Hz;
 
         double LENGTH, WIDTH, HEIGHT; // x, y, z;
         int VOXEL_NUM_X, VOXEL_NUM_Y, VOXEL_NUM_Z;
+        int voxel_num;
         float voxel_size_x, voxel_size_y, voxel_size_z;
 
         ros::NodeHandle n;
         ros::NodeHandle nh;
         
 		ros::Subscriber raycast_msg_subscriber;
-
 		ros::Publisher raycast_viz_publisher;
+
+        visualization_msgs::MarkerArray voxel_marker;
 
         ray_casting::RayCasting raycast_msg;
 
