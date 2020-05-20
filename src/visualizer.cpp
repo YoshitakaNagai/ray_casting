@@ -26,7 +26,7 @@ void Visualizing::execution(void)
 	ros::Rate r(Hz);
 	while(ros::ok()){
 		if(raycast_msg_callback_flag){
-            vizualization();
+            visualization();
             raycast_viz_publisher.publish(voxel_marker);
 		}
 		r.sleep();
@@ -55,6 +55,7 @@ void Visualizing::formatting(void)
 
 void Visualizing::visualization(void)
 {
+    int i = 0;
     for(int ix = 0; ix < VOXEL_NUM_X; ix++){
         for(int iy = 0; iy < VOXEL_NUM_Y; iy++){
             for(int iz = 0; iz < VOXEL_NUM_Z; iz++){
@@ -92,6 +93,7 @@ void Visualizing::visualization(void)
                     voxel_marker.markers[i].color.b = 0.5;
                 }
                 voxel_marker.markers[i].color.a = 0.5;
+                i++;
             }
         }
     }
