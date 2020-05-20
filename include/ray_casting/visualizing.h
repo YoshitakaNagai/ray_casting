@@ -2,7 +2,7 @@
 #define __VISUALIZING_H
 
 #include <ros/ros.h>
-#include <visualization_msgs/Markerarray.h>
+#include <visualization_msgs/MarkerArray.h>
 
 #include "ray_casting/RayCasting.h"
 #include "ray_casting/Format.h"
