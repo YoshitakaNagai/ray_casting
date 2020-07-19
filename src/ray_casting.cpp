@@ -16,10 +16,10 @@ RayCasting::RayCasting(void)
     nh.param("LOWER_RAY_FOV_PITCH", LOWER_RAY_FOV_PITCH, -30.67);
     // nh.param("", , );
 
-    pc_subscriber = n.subscribe("/velodyne_points", 10, &RayCasting::pc_callback, this);
-    lidar_position_subscriber = n.subscribe("/lidar_position_msg", 10, &RayCasting::lidar_position_msg_callback, this);
+    pc_subscriber = nh.subscribe("/velodyne_points", 10, &RayCasting::pc_callback, this);
+    lidar_position_subscriber = nh.subscribe("/lidar_position_msg", 10, &RayCasting::lidar_position_msg_callback, this);
 	
-	raycast_msg_publisher = n.advertise<ray_casting::RayCasting>("/raycast_msg", 10);
+	raycast_msg_publisher = nh.advertise<ray_casting::RayCasting>("/raycast_msg", 10);
 }
 
 
