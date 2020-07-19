@@ -10,6 +10,10 @@
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_cloud.h>
 
+#include "Eigen/Core"
+#include "Eigen/Dense"
+#include "Eigen/LU"
+
 #include "ray_casting/RayCasting.h"
 #include "ray_casting/Format.h"
 #include "ray_casting/Voxel.h"
